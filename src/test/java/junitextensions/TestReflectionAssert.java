@@ -37,4 +37,9 @@ public class TestReflectionAssert extends BaseAssert implements ReflectionAssert
 	public void assertPrivateConstructor_withPublicConstructor() {
 		assertPrivateConstructor(TestReflectionAssert.class);
 	}
+
+	@Test(expected = AssertionError.class)
+	public void assertPrivateConstructor_withoutDefaultConstructor() {
+		assertPrivateConstructor(DummyClassWithoutDefaultConstructor.class);
+	}
 }
