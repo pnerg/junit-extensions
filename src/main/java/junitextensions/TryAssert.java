@@ -18,6 +18,8 @@ package junitextensions;
 import org.junit.Assert;
 
 import javascalautils.Failure;
+import javascalautils.Option;
+import javascalautils.Success;
 import javascalautils.Try;
 
 /**
@@ -37,12 +39,25 @@ public interface TryAssert {
     }
 
     /**
-     * Asserts that the provided {@link Try} is a {@link Failure}.
+     * Asserts that the provided {@link Try} is a {@link Success}.
      * @param t The Try instance to Assert
      * @since 1.0
      */
     default void assertIsSuccess(Try<?> t) {
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Success", t.isSuccess());
     }
+    
+    /**
+     * Assert that the provided {@link Option} is a {@link Success} and it holds the expected value.
+     * @param expected The expected value of the Success
+     * @param t The Try instance to Assert
+     * @since 1.0
+     */
+    default void assertSuccessEquals(Object expected, Try<?> t) {
+    	assertIsSuccess(t);
+    	//orNull will never happen as we've already asserted it to be a Success
+    	Assert.assertEquals("Unexpected value on Success", expected, t.orNull());
+    }	
+
 	
 }

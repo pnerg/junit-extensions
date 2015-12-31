@@ -15,9 +15,10 @@
  */
 package junitextensions;
 
-import org.junit.Test;
 import static javascalautils.TryCompanion.Failure;
-import static javascalautils.TryCompanion.Success;;
+import static javascalautils.TryCompanion.Success;
+
+import org.junit.Test;;
 /**
  * Test the class {@link TryAssert}.
  * @author Peter Nerg
@@ -43,4 +44,22 @@ public class TestTryAssert extends BaseAssert implements TryAssert {
 	public void assertIsSuccess_withSuccess() {
 		assertIsSuccess(Success("Failure is not an Option"));
 	}
+	
+	@Test
+	public void assertSuccessEquals_withMatchingSuccess() {
+		String expected = "Some is never None";
+		assertSuccessEquals(expected, Success(expected));
+	}
+
+	@Test(expected=AssertionError.class)
+	public void assertSuccessEquals_withNonMatchingSuccess() {
+		String expected = "Some is never None";
+		assertSuccessEquals(expected, Success(expected.toUpperCase()));
+	}
+
+	@Test(expected=AssertionError.class)
+	public void assertSuccessEquals_withFailure() {
+		assertSuccessEquals("Doesn't matter", Failure(new Exception("Error, terror!")));
+	}
+
 }
