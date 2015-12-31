@@ -39,6 +39,7 @@ public interface ReflectionAssert {
 	 * @since 1.1
 	 */
 	default <T extends Object> void assertPrivateConstructor(Class<T> clazz) {
+    	Assert.assertNotNull("Expected non-null object", clazz);
 		Constructor<T> constructor = null;
 		try {
 			constructor = clazz.getDeclaredConstructor();

@@ -17,9 +17,7 @@ package junitextensions;
 
 import java.util.Locale;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 
 /**
  * Base test class.
@@ -34,16 +32,6 @@ public class BaseAssert extends Assert {
         System.setProperty("user.country", Locale.US.getCountry());
         System.setProperty("user.language", Locale.US.getLanguage());
         System.setProperty("user.variant", Locale.US.getVariant());
-    }
-
-    @BeforeClass
-    public final static void setTempDirectoryToTarget() {
-        System.setProperty("java.io.tmpdir", "target/");
-    }
-
-    @AfterClass
-    public final static void resetTempDirectoryToTarget() {
-        System.clearProperty("java.io.tmpdir");
     }
 
 }
