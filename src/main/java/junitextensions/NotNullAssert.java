@@ -18,7 +18,7 @@ package junitextensions;
 import org.junit.Assert;
 
 /**
- * Provides a single {@link #assertNotNull(Object) assertNotNull} method with a meaningful printout.
+ * Provides a single {@link #assertObjectNotNull(Object) assertObjectNotNull} method with a meaningful printout.
  * @author Peter Nerg
  * @since 1.1
  */
