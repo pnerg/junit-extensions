@@ -17,6 +17,7 @@ package junitextensions;
 
 import org.junit.Assert;
 
+import javascalautils.None;
 import javascalautils.Option;
 import javascalautils.Some;
 
@@ -29,11 +30,19 @@ public interface OptionAssert {
 
     /**
      * Assert that the provided {@link Option} is a {@link Some}.
-     * @param option
+     * @param option The Option to assert
      * @since 1.0
      */
     default void assertIsSome(Option<?> option) {
     	Assert.assertTrue("Expected the Option ["+option+"] to be Some", option.isDefined());
     }
 
+    /**
+     * Assert that the provided {@link Option} is a {@link None}.
+     * @param option The Option to assert
+     * @since 1.0
+     */
+    default void assertIsNone(Option<?> option) {
+    	Assert.assertTrue("Expected the Option ["+option+"] to be None", option.isEmpty());
+    }
 }

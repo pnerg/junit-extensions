@@ -34,4 +34,14 @@ public class TestOptionAssert implements OptionAssert {
 	public void assertIsSome_withNone() {
 		assertIsSome(None());
 	}
+
+	@Test(expected=AssertionError.class)
+	public void assertIsNone_withSome() {
+		assertIsNone(Some("Some is never None"));
+	}
+	
+	@Test
+	public void assertIsNone_withNone() {
+		assertIsNone(None());
+	}
 }
