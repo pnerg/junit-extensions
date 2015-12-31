@@ -38,4 +38,16 @@ public class TestCollectionsAssert extends BaseAssert implements CollectionsAsse
 		set.add(new Object());
 		assertIsEmpty(set);
 	}
+
+	@Test(expected = AssertionError.class)
+	public void assertIsNotEmpty_withEmpty() {
+		assertIsNotEmpty(Collections.emptyList());
+	}
+	
+	@Test
+	public void assertIsNotEmpty_withNonEmpty() {
+		Set<Object> set = new HashSet<>();
+		set.add(new Object());
+		assertIsNotEmpty(set);
+	}
 }

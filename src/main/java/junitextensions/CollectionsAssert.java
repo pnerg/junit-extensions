@@ -36,4 +36,14 @@ public interface CollectionsAssert extends NotNullAssert {
     	assertObjectNotNull(collection);
         Assert.assertTrue("Expected collection to be empty", collection.isEmpty());
     }
+
+    /**
+     * Assert that a collection is <u>not</u> empty.
+     * @param collection The collection to assert
+     * @since 1.1
+     */
+    default void assertIsNotEmpty(Collection<?> collection) {
+    	assertObjectNotNull(collection);
+        Assert.assertFalse("Expected collection to contain something", collection.isEmpty());
+    }
 }
