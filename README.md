@@ -10,6 +10,9 @@ With that in the toolbox this library introduces interfaces with additional asse
 import static javascalautils.OptionCompanion.Option;
 import static javascalautils.TryCompanion.Try;
 
+import junitextensions.OptionAssert;
+import junitextensions.TryAssert;
+
 import org.junit.Test;
 
 /**
