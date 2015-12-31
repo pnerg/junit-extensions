@@ -24,7 +24,7 @@ import org.junit.Assert;
  * 
  * @author Peter Nerg
  */
-public class BaseAssert extends Assert {
+class BaseAssert extends Assert {
 
     static {
         // Configure language for proper logging outputs
