@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pnerg/junit-extensions.svg)](https://travis-ci.org/pnerg/junit-extensions) [![codecov.io](http://codecov.io/github/pnerg/junit-extensions/coverage.svg?branch=master)](http://codecov.io/github/pnerg/junit-extensions?branch=master)
+[![Build Status](https://travis-ci.org/pnerg/junit-extensions.svg)](https://travis-ci.org/pnerg/junit-extensions) [![codecov.io](http://codecov.io/github/pnerg/junit-extensions/coverage.svg?branch=master)](http://codecov.io/github/pnerg/junit-extensions?branch=master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.dmonix.junit/junit-extensions/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.dmonix.junit/junit-extensions)
 # junit-extensions
 Extensions to JUnit providing additional assertions.  
 This project is inspired by the Scala Test libraries and how one can mix in [Traits](http://docs.scala-lang.org/tutorials/tour/traits.html) to get new behavior in the test code.  
