@@ -26,7 +26,7 @@ import org.junit.Assert;
  * @author Peter Nerg
  * @since 1.1
  */
-public interface ReflectionAssert {
+public interface ReflectionAssert extends NotNullAssert {
 
 	/**
 	 * Asserts that the provided class has a private default (non-argument) constructor. <br>
@@ -39,7 +39,7 @@ public interface ReflectionAssert {
 	 * @since 1.1
 	 */
 	default <T extends Object> void assertPrivateConstructor(Class<T> clazz) {
-    	Assert.assertNotNull("Expected non-null object", clazz);
+		assertObjectNotNull(clazz);
 		Constructor<T> constructor = null;
 		try {
 			constructor = clazz.getDeclaredConstructor();

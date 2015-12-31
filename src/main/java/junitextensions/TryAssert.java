@@ -27,7 +27,7 @@ import javascalautils.Try;
  * @author Peter Nerg
  * @since 1.0
  */
-public interface TryAssert {
+public interface TryAssert extends NotNullAssert {
 
     /**
      * Asserts that the provided {@link Try} is a {@link Failure}.
@@ -35,7 +35,7 @@ public interface TryAssert {
      * @since 1.0
      */
     default void assertIsFailure(Try<?> t) {
-    	Assert.assertNotNull("Expected non-null object", t);
+    	assertObjectNotNull(t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Failure", t.isFailure());
     }
 
@@ -45,7 +45,7 @@ public interface TryAssert {
      * @since 1.0
      */
     default void assertIsSuccess(Try<?> t) {
-    	Assert.assertNotNull("Expected non-null object", t);
+    	assertObjectNotNull(t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Success", t.isSuccess());
     }
     

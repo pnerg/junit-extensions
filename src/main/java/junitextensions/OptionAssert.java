@@ -26,7 +26,7 @@ import javascalautils.Some;
  * @author Peter Nerg
  * @since 1.0
  */
-public interface OptionAssert {
+public interface OptionAssert extends NotNullAssert {
 
     /**
      * Assert that the provided {@link Option} is a {@link Some}.
@@ -34,7 +34,7 @@ public interface OptionAssert {
      * @since 1.0
      */
     default void assertIsSome(Option<?> option) {
-    	Assert.assertNotNull("Expected non-null object", option);
+    	assertObjectNotNull(option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be Some", option.isDefined());
     }
 
@@ -44,10 +44,9 @@ public interface OptionAssert {
      * @since 1.0
      */
     default void assertIsNone(Option<?> option) {
-    	Assert.assertNotNull("Expected non-null object", option);
+    	assertObjectNotNull(option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be None", option.isEmpty());
     }
-
 
     /**
      * Assert that the provided {@link Option} is a {@link Some} and it holds the expected value.
