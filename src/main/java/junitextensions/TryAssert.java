@@ -35,6 +35,7 @@ public interface TryAssert {
      * @since 1.0
      */
     default void assertIsFailure(Try<?> t) {
+    	Assert.assertNotNull("Expected non-null object", t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Failure", t.isFailure());
     }
 
@@ -44,6 +45,7 @@ public interface TryAssert {
      * @since 1.0
      */
     default void assertIsSuccess(Try<?> t) {
+    	Assert.assertNotNull("Expected non-null object", t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Success", t.isSuccess());
     }
     

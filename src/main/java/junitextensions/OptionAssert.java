@@ -34,6 +34,7 @@ public interface OptionAssert {
      * @since 1.0
      */
     default void assertIsSome(Option<?> option) {
+    	Assert.assertNotNull("Expected non-null object", option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be Some", option.isDefined());
     }
 
@@ -43,6 +44,7 @@ public interface OptionAssert {
      * @since 1.0
      */
     default void assertIsNone(Option<?> option) {
+    	Assert.assertNotNull("Expected non-null object", option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be None", option.isEmpty());
     }
 
