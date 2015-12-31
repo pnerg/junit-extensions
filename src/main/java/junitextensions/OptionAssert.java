@@ -45,4 +45,15 @@ public interface OptionAssert {
     default void assertIsNone(Option<?> option) {
     	Assert.assertTrue("Expected the Option ["+option+"] to be None", option.isEmpty());
     }
+
+
+    /**
+     * Assert that the provided {@link Option} is a {@link Some} and it holds the expected value.
+     * @param option The Option to assert
+     * @since 1.0
+     */
+    default void assertSomeEquals(Object expected, Option<?> option) {
+    	assertIsSome(option);
+    	Assert.assertEquals("Unexpected value on Some", expected, option.get());
+    }	
 }

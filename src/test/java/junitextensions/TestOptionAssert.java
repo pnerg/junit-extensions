@@ -20,8 +20,8 @@ import static javascalautils.OptionCompanion.Some;
 import static javascalautils.OptionCompanion.None;
 
 /**
+ * Test the class {@link OptionAssert}
  * @author Peter Nerg
- *
  */
 public class TestOptionAssert implements OptionAssert {
 
@@ -43,5 +43,22 @@ public class TestOptionAssert implements OptionAssert {
 	@Test
 	public void assertIsNone_withNone() {
 		assertIsNone(None());
+	}
+	
+	@Test
+	public void assertSomeEquals_withMatchingSome() {
+		String expected = "Some is never None";
+		assertSomeEquals(expected, Some(expected));
+	}
+
+	@Test(expected=AssertionError.class)
+	public void assertSomeEquals_withNonMatchingSome() {
+		String expected = "Some is never None";
+		assertSomeEquals(expected, Some(expected.toUpperCase()));
+	}
+
+	@Test(expected=AssertionError.class)
+	public void assertSomeEquals_withNone() {
+		assertSomeEquals("Doesn't matter", None());
 	}
 }
