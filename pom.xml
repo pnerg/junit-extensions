@@ -5,7 +5,7 @@
 	<groupId>org.dmonix.junit</groupId>
 	<artifactId>junit-extensions</artifactId>
 	<name>JUnit Extensions</name>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<description>Extensions to JUnit providing additional assertions</description>
 	<url>https://github.com/pnerg/junit-extensions</url>
