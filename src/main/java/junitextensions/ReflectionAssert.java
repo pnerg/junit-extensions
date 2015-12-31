@@ -42,15 +42,18 @@ public interface ReflectionAssert {
 		Constructor<T> constructor = null;
 		try {
 			constructor = clazz.getDeclaredConstructor();
+		} catch (ReflectiveOperationException ex) {
+			throw new AssertionError("Class [" + clazz + "] has not a default constructor", ex);
+		}
+
+		try {
 			Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
 			constructor.setAccessible(true);
 			constructor.newInstance();
 		} catch (ReflectiveOperationException ex) {
 			throw new AssertionError("Failed to create instance of [" + clazz + "]", ex);
 		} finally {
-			if (constructor != null) {
-				constructor.setAccessible(false);
-			}
+			constructor.setAccessible(false);
 		}
 
 	}
