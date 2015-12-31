@@ -33,8 +33,16 @@ public interface TryAssert {
      * @since 1.0
      */
     default void assertIsFailure(Try<?> t) {
-    	Assert.assertTrue("Expected the Try to be a Failure", t.isFailure());
+    	Assert.assertTrue("Expected the Try ["+t+"] to be a Failure", t.isFailure());
     }
 
+    /**
+     * Asserts that the provided {@link Try} is a {@link Failure}.
+     * @param t The Try instance to Assert
+     * @since 1.0
+     */
+    default void assertIsSuccess(Try<?> t) {
+    	Assert.assertTrue("Expected the Try ["+t+"] to be a Success", t.isSuccess());
+    }
 	
 }

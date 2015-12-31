@@ -33,4 +33,14 @@ public class TestTryAssert extends BaseAssert implements TryAssert {
 	public void assertIsFailure_withSuccess() {
 		assertIsFailure(Success("Failure is not an Option"));
 	}
+
+	@Test(expected = AssertionError.class)
+	public void assertIsSuccess_withFailure() {
+		assertIsSuccess(Failure(new Exception("Error, terror!")));
+	}
+	
+	@Test
+	public void assertIsSuccess_withSuccess() {
+		assertIsSuccess(Success("Failure is not an Option"));
+	}
 }
