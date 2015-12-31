@@ -24,7 +24,7 @@ import org.junit.Assert;
  * Provides additional assert operations related to the reflective operations.
  * 
  * @author Peter Nerg
- * @since 1.0
+ * @since 1.1
  */
 public interface ReflectionAssert {
 
