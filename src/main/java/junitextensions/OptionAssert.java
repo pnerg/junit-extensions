@@ -49,6 +49,7 @@ public interface OptionAssert {
 
     /**
      * Assert that the provided {@link Option} is a {@link Some} and it holds the expected value.
+     * @param expected The expected value of the Some
      * @param option The Option to assert
      * @since 1.0
      */
