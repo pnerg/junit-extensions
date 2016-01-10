@@ -53,6 +53,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * Asserts that the provided {@link Future} is completed within the provided duration.
      * @param <T> The type of the Future
      * @param future The Future instance to Assert
+     * @param duration The duration to wait for the Future to complete
      * @since 1.1
 	 */
 	default <T> void assertComplete(Future<T> future, Duration duration) {
