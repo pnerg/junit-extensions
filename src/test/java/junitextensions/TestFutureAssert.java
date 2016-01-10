@@ -28,6 +28,8 @@ import javascalautils.concurrent.Promise;
  */
 public class TestFutureAssert extends BaseAssert implements FutureAssert {
 
+	private static final Duration duration = Duration.ofMillis(5);
+
 	@Test
 	public void assertSuccess_isSuccess() {
 		assertSuccess(Future.successful("Oh yeah!"));
@@ -45,17 +47,17 @@ public class TestFutureAssert extends BaseAssert implements FutureAssert {
 	
 	@Test
 	public void assertSuccess_withDuration_isSuccess() {
-		assertSuccess(Future.successful("Oh yeah!"), Duration.ofSeconds(1));
+		assertSuccess(Future.successful("Oh yeah!"), duration);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void assertSuccess_withDuration_isFailure() {
-		assertSuccess(Future.failed(new Exception("Error, terror!!")), Duration.ofSeconds(1));
+		assertSuccess(Future.failed(new Exception("Error, terror!!")), duration);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void assertSuccess_neverCompletes() {
-		assertSuccess(Promise.apply().future(), Duration.ofMillis(5));
+		assertSuccess(Promise.apply().future(), duration);
 	}
 	
 	@Test(expected = AssertionError.class)
@@ -75,16 +77,26 @@ public class TestFutureAssert extends BaseAssert implements FutureAssert {
 	
 	@Test(expected = AssertionError.class)
 	public void assertFailure_withDuration_isSuccess() {
-		assertFailure(Future.successful("Oh yeah!"), Duration.ofSeconds(1));
+		assertFailure(Future.successful("Oh yeah!"), duration);
 	}
 
 	@Test
 	public void assertFailure_withDuration_isFailure() {
-		assertFailure(Future.failed(new Exception("Error, terror!!")), Duration.ofSeconds(1));
+		assertFailure(Future.failed(new Exception("Error, terror!!")), duration);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void assertFailure_neverCompletes() {
-		assertFailure(Promise.apply().future(), Duration.ofMillis(5));
+		assertFailure(Promise.apply().future(), duration);
+	}
+	
+	@Test
+	public void assertCompleted_withDuration_completes() {
+		assertCompleted(Future.successful("Oh yeah!"), duration);
+	}
+
+	@Test(expected = AssertionError.class)
+	public void assertCompleted_withDuration_neverCompletes() {
+		assertCompleted(Promise.apply().future(), duration);
 	}
 }
