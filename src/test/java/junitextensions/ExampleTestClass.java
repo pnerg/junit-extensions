@@ -31,24 +31,24 @@ public class ExampleTestClass implements OptionAssert, TryAssert {
 	public void assertingSome() {
 		String expected = "Some is never None";
 		//this method is inherited from OptionAssert
-		assertSomeEquals(expected, Option(expected));
+		assertSome(expected, Option(expected));
 	}
 	
 	@Test
 	public void getNoneExistingItemFromMap() {
 		//this method is inherited from OptionAssert
-		assertIsNone(Option(null));
+		assertNone(Option(null));
 	}
 	
 	@Test
 	public void assertingSuccess(){
 		//this method is inherited from TryAssert
-		assertSuccessEquals(66, Try(() -> 33*2));
+		assertSuccess(66, Try(() -> 33*2));
 	}
 
 	@Test
 	public void assertingFailure(){		
 		//this method is inherited from TryAssert
-		assertIsFailure(Try(() -> 69/0)); //division by zero, will fail
+		assertFailure(Try(() -> 69/0)); //division by zero, will fail
 	}
 }

@@ -34,7 +34,7 @@ public interface TryAssert extends NotNullAssert {
      * @param t The Try instance to Assert
      * @since 1.0
      */
-    default void assertIsFailure(Try<?> t) {
+    default void assertFailure(Try<?> t) {
     	assertObjectNotNull(t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Failure", t.isFailure());
     }
@@ -44,21 +44,22 @@ public interface TryAssert extends NotNullAssert {
      * @param t The Try instance to Assert
      * @since 1.0
      */
-    default void assertIsSuccess(Try<?> t) {
+    default void assertSuccess(Try<?> t) {
     	assertObjectNotNull(t);
     	Assert.assertTrue("Expected the Try ["+t+"] to be a Success", t.isSuccess());
     }
     
     /**
      * Assert that the provided {@link Option} is a {@link Success} and it holds the expected value.
+     * @param <T> The type of the Try
      * @param expected The expected value of the Success
      * @param t The Try instance to Assert
      * @since 1.0
      */
-    default void assertSuccessEquals(Object expected, Try<?> t) {
-    	assertIsSuccess(t);
+    default <T> void assertSuccess(T expected, Try<T> t) {
+    	assertSuccess(t);
     	//orNull will never happen as we've already asserted it to be a Success
-    	Assert.assertEquals("Unexpected value on Success", expected, t.orNull());
+    	Assert.assertEquals("Unexpected value ["+t+"] on Success", expected, t.orNull());
     }	
 
 	

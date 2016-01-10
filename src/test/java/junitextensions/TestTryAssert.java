@@ -27,39 +27,39 @@ public class TestTryAssert extends BaseAssert implements TryAssert {
 
 	@Test
 	public void assertIsFailure_withFailure() {
-		assertIsFailure(Failure(new Exception("Error, terror!")));
+		assertFailure(Failure(new Exception("Error, terror!")));
 	}
 	
 	@Test(expected = AssertionError.class)
 	public void assertIsFailure_withSuccess() {
-		assertIsFailure(Success("Failure is not an Option"));
+		assertFailure(Success("Failure is not an Option"));
 	}
 
 	@Test(expected = AssertionError.class)
 	public void assertIsSuccess_withFailure() {
-		assertIsSuccess(Failure(new Exception("Error, terror!")));
+		assertSuccess(Failure(new Exception("Error, terror!")));
 	}
 	
 	@Test
 	public void assertIsSuccess_withSuccess() {
-		assertIsSuccess(Success("Failure is not an Option"));
+		assertSuccess(Success("Failure is not an Option"));
 	}
 	
 	@Test
 	public void assertSuccessEquals_withMatchingSuccess() {
 		String expected = "Some is never None";
-		assertSuccessEquals(expected, Success(expected));
+		assertSuccess(expected, Success(expected));
 	}
 
 	@Test(expected=AssertionError.class)
 	public void assertSuccessEquals_withNonMatchingSuccess() {
 		String expected = "Some is never None";
-		assertSuccessEquals(expected, Success(expected.toUpperCase()));
+		assertSuccess(expected, Success(expected.toUpperCase()));
 	}
 
 	@Test(expected=AssertionError.class)
 	public void assertSuccessEquals_withFailure() {
-		assertSuccessEquals("Doesn't matter", Failure(new Exception("Error, terror!")));
+		assertSuccess("Doesn't matter", Failure(new Exception("Error, terror!")));
 	}
 
 }

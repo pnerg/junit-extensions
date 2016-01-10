@@ -27,38 +27,44 @@ public class TestOptionAssert implements OptionAssert {
 
 	@Test
 	public void assertIsSome_withSome() {
-		assertIsSome(Some("Some is never None"));
+		assertSome(Some("Some is never None"));
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void assertIsSome_withNone() {
-		assertIsSome(None());
+		assertSome(None());
 	}
 
 	@Test(expected=AssertionError.class)
 	public void assertIsNone_withSome() {
-		assertIsNone(Some("Some is never None"));
+		assertNone(Some("Some is never None"));
 	}
 	
 	@Test
 	public void assertIsNone_withNone() {
-		assertIsNone(None());
+		assertNone(None());
 	}
 	
 	@Test
 	public void assertSomeEquals_withMatchingSome() {
 		String expected = "Some is never None";
-		assertSomeEquals(expected, Some(expected));
+		assertSome(expected, Some(expected));
+	}
+
+	@Test
+	public void assertSomeEquals_withMatchingSome_Object() {
+		Object expected = new Object();
+		assertSome(expected, Some(expected));
 	}
 
 	@Test(expected=AssertionError.class)
 	public void assertSomeEquals_withNonMatchingSome() {
 		String expected = "Some is never None";
-		assertSomeEquals(expected, Some(expected.toUpperCase()));
+		assertSome(expected, Some(expected.toUpperCase()));
 	}
 
 	@Test(expected=AssertionError.class)
 	public void assertSomeEquals_withNone() {
-		assertSomeEquals("Doesn't matter", None());
+		assertSome("Doesn't matter", None());
 	}
 }

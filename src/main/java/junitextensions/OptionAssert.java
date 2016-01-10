@@ -33,7 +33,7 @@ public interface OptionAssert extends NotNullAssert {
      * @param option The Option to assert
      * @since 1.0
      */
-    default void assertIsSome(Option<?> option) {
+    default void assertSome(Option<?> option) {
     	assertObjectNotNull(option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be Some", option.isDefined());
     }
@@ -43,19 +43,20 @@ public interface OptionAssert extends NotNullAssert {
      * @param option The Option to assert
      * @since 1.0
      */
-    default void assertIsNone(Option<?> option) {
+    default void assertNone(Option<?> option) {
     	assertObjectNotNull(option);
     	Assert.assertTrue("Expected the Option ["+option+"] to be None", option.isEmpty());
     }
 
     /**
      * Assert that the provided {@link Option} is a {@link Some} and it holds the expected value.
+     * @param <T> The type of the Option
      * @param expected The expected value of the Some
      * @param option The Option to assert
      * @since 1.0
      */
-    default void assertSomeEquals(Object expected, Option<?> option) {
-    	assertIsSome(option);
+    default <T> void assertSome(T expected, Option<T> option) {
+    	assertSome(option);
     	Assert.assertEquals("Unexpected value on Some", expected, option.get());
     }	
 }
