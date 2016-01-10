@@ -18,6 +18,7 @@ package junitextensions;
 import org.junit.Test;
 
 import javascalautils.concurrent.Future;
+import javascalautils.concurrent.Promise;
 
 /**
  * Test the class {@link FutureAssert}
@@ -31,4 +32,13 @@ public class TestFutureAssert extends BaseAssert implements FutureAssert {
 		assertSuccess(Future.successful("Oh yeah!"));
 	}
 	
+	@Test(expected = AssertionError.class)
+	public void assertSuccess_isFailure() {
+		assertSuccess(Future.failed(new Exception("Error, terror!!")));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void assertSuccess_notCompleted() {
+		assertSuccess(Promise.apply().future());
+	}
 }
