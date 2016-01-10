@@ -22,6 +22,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.junit.Assert;
 
+import javascalautils.Failure;
 import javascalautils.Option;
 import javascalautils.Success;
 import javascalautils.Try;
@@ -34,6 +35,20 @@ import javascalautils.concurrent.Future;
  */
 public interface FutureAssert extends NotNullAssert, TryAssert {
 
+	/**
+     * Asserts that the provided {@link Future} is {@link Future#isCompleted() completed}.
+     * @param <T> The type of the Future
+     * @param future The Future instance to Assert
+     * @since 1.1
+	 */
+	default <T> void assertComplete(Future<T> future) {
+    	assertObjectNotNull(future);
+		Option<Try<T>> option = future.value();
+		
+		//if we get None then the Future is not finished
+		assertTrue("The Future is not completed.", option.isDefined());
+	}
+	
     /**
      * Asserts that the provided {@link Future} is {@link Future#isCompleted() completed} as well as the result is a {@link Success}.
      * @param <T> The type of the Future
@@ -41,14 +56,10 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @since 1.1
      */
 	default <T> void assertSuccess(Future<T> future) {
-    	assertObjectNotNull(future);
-		Option<Try<T>> option = future.value();
-		
-		//if we get None then the Future is not finished
-		assertTrue("The Future is not completed.", option.isDefined());
+		assertComplete(future);
 		
 		//now we assert the result (Try) of the Future
-		assertSuccess(option.get());
+		assertSuccess(future.value().get());
 	}
 
 	/**
@@ -71,4 +82,19 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
     	//now we know the future is complete, assert the result
     	assertSuccess(future);
 	}
+
+    /**
+     * Asserts that the provided {@link Future} is {@link Future#isCompleted() completed} as well as the result is a {@link Failure}.
+     * @param <T> The type of the Future
+     * @param future The Future instance to Assert
+     * @since 1.1
+     */
+	default <T> void assertFailure(Future<T> future) {
+		assertComplete(future);
+		
+		//now we assert the result (Try) of the Future
+		assertFailure(future.value().get());
+	}
+	
 }
+
