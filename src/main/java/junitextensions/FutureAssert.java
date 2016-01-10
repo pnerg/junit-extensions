@@ -41,7 +41,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @param future The Future instance to Assert
      * @since 1.1
 	 */
-	default <T> void assertComplete(Future<T> future) {
+	default <T> void assertCompleted(Future<T> future) {
     	assertObjectNotNull(future);
 		Option<Try<T>> option = future.value();
 		
@@ -56,7 +56,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @param duration The duration to wait for the Future to complete
      * @since 1.1
 	 */
-	default <T> void assertComplete(Future<T> future, Duration duration) {
+	default <T> void assertCompleted(Future<T> future, Duration duration) {
     	assertObjectNotNull(future);
 		
     	//block and wait for the Future to complete...or time out
@@ -73,7 +73,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @since 1.1
      */
 	default <T> void assertSuccess(Future<T> future) {
-		assertComplete(future);
+		assertCompleted(future);
 		
 		//now we assert the result (Try) of the Future
 		assertSuccess(future.value().get());
@@ -87,7 +87,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @since 1.1
 	 */
 	default <T> void assertSuccess(Future<T> future, Duration duration) {
-    	assertComplete(future, duration);
+    	assertCompleted(future, duration);
     	
     	//now we know the future is complete, assert the result
     	assertSuccess(future);
@@ -100,7 +100,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @since 1.1
      */
 	default <T> void assertFailure(Future<T> future) {
-		assertComplete(future);
+		assertCompleted(future);
 		
 		//now we assert the result (Try) of the Future
 		assertFailure(future.value().get());
@@ -115,7 +115,7 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
      * @since 1.1
 	 */
 	default <T> void assertFailure(Future<T> future, Duration duration) {
-    	assertComplete(future, duration);
+    	assertCompleted(future, duration);
 
     	//now we know the future is complete, assert the result
     	assertFailure(future);
