@@ -73,4 +73,18 @@ public class TestFutureAssert extends BaseAssert implements FutureAssert {
 		assertFailure(Promise.apply().future());
 	}
 	
+	@Test(expected = AssertionError.class)
+	public void assertFailure_withDuration_isSuccess() {
+		assertFailure(Future.successful("Oh yeah!"), Duration.ofSeconds(1));
+	}
+
+	@Test
+	public void assertFailure_withDuration_isFailure() {
+		assertFailure(Future.failed(new Exception("Error, terror!!")), Duration.ofSeconds(1));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void assertFailure_neverCompletes() {
+		assertFailure(Promise.apply().future(), Duration.ofMillis(5));
+	}
 }
