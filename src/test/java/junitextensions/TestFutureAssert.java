@@ -15,11 +15,12 @@
  */
 package junitextensions;
 
+import java.time.Duration;
+
 import org.junit.Test;
 
 import javascalautils.concurrent.Future;
 import javascalautils.concurrent.Promise;
-
 /**
  * Test the class {@link FutureAssert}
  * @author Peter Nerg
@@ -40,5 +41,20 @@ public class TestFutureAssert extends BaseAssert implements FutureAssert {
 	@Test(expected = AssertionError.class)
 	public void assertSuccess_notCompleted() {
 		assertSuccess(Promise.apply().future());
+	}
+	
+	@Test
+	public void assertSuccess_withDuration_isSuccess() {
+		assertSuccess(Future.successful("Oh yeah!"), Duration.ofSeconds(1));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void assertSuccess_withDuration_isFailure() {
+		assertSuccess(Future.failed(new Exception("Error, terror!!")), Duration.ofSeconds(1));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void assertSuccess_neverCompletes() {
+		assertSuccess(Promise.apply().future(), Duration.ofMillis(5));
 	}
 }

@@ -17,6 +17,11 @@ package junitextensions;
 
 import static org.junit.Assert.assertTrue;
 
+import java.time.Duration;
+import java.util.concurrent.TimeoutException;
+
+import org.junit.Assert;
+
 import javascalautils.Option;
 import javascalautils.Success;
 import javascalautils.Try;
@@ -44,5 +49,26 @@ public interface FutureAssert extends NotNullAssert, TryAssert {
 		
 		//now we assert the result (Try) of the Future
 		assertSuccess(option.get());
+	}
+
+	/**
+	 * Asserts that the provided {@link Future} is completed within the provided duration as well as the result is a {@link Success}.
+     * @param <T> The type of the Future
+     * @param future The Future instance to Assert
+     * @param duration The duration to wait for the Future to complete
+     * @since 1.1
+	 */
+	default <T> void assertSuccess(Future<T> future, Duration duration) {
+    	assertObjectNotNull(future);
+    	
+    	//block and wait for the Future to complete...or time out
+    	try {
+			future.ready(duration);
+		} catch (TimeoutException | InterruptedException e) {
+			Assert.fail("Timeout waiting for Future to complete");
+		}
+
+    	//now we know the future is complete, assert the result
+    	assertSuccess(future);
 	}
 }
