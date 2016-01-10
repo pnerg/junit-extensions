@@ -48,3 +48,12 @@ public class ExampleTestClass implements OptionAssert, TryAssert {
 	}
 }
 ```
+
+##Download From Maven Central
+```xml
+<dependency>
+    <groupId>org.dmonix.junit</groupId>
+    <artifactId>junit-extensions</artifactId>
+    <version>1.1</version>
+</dependency>
+```
