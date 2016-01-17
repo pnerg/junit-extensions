@@ -18,7 +18,6 @@ package junitextensions;
 import org.junit.Assert;
 
 import javascalautils.Failure;
-import javascalautils.Option;
 import javascalautils.Success;
 import javascalautils.Try;
 
@@ -50,7 +49,7 @@ public interface TryAssert extends NotNullAssert {
     }
     
     /**
-     * Assert that the provided {@link Option} is a {@link Success} and it holds the expected value.
+     * Assert that the provided {@link Try} is a {@link Success} and it holds the expected value.
      * @param <T> The type of the Try
      * @param expected The expected value of the Success
      * @param t The Try instance to Assert
