@@ -48,7 +48,7 @@ public interface ReflectionAssert extends NotNullAssert {
 		}
 
 		try {
-			Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+			Assert.assertTrue("Expected the constuctor to be private", Modifier.isPrivate(constructor.getModifiers()));
 			constructor.setAccessible(true);
 			constructor.newInstance();
 		} catch (ReflectiveOperationException ex) {
